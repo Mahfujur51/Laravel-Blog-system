@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category=Category::all();
+        return view('admin.category.index',compact('category'));
+
     }
 
     /**
@@ -34,12 +38,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request,
+     $this->validate($request,
         [
-            'name'=>'required|unique'
+            'name'=>'required'
 
         ]);
-    }
+     $category = new Category();
+     $category->name=$request->name;
+     $category->save();
+     Session::flash('success','Category Created Successfully!!');
+
+     return redirect()->back();
+
+ }
 
     /**
      * Display the specified resource.
@@ -60,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -72,7 +84,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $category=Category::find($id);
+       $category->name=$request->name;
+       $category->update();
+       Session::flash('success','Category Updated Successfully!!');
+
+       return redirect()->route('category');
     }
 
     /**
@@ -83,6 +100,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=Category::find($id);
+        $category->delete();
+        Session::flash('success','Category Deleted Successfully!!');
+        return redirect()->back();
     }
 }

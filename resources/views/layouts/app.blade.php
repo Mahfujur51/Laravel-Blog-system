@@ -28,6 +28,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
 </head>
 <body>
@@ -93,10 +94,15 @@
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item">
+                        <a href="{{ route('category') }}">Category</a>
+                    </li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
                         <a href="{{ route('post.create') }}">Create Post</a>
                     </li>
                 </ul>
-                 <ul class="list-group">
+                <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('category.create') }}">Create Category</a>
                     </li>
@@ -105,12 +111,21 @@
             @endif
 
             <div class="col-md-8">
-               @yield('content')
-           </div>
-       </div>
-   </div>
+             @yield('content')
+         </div>
+     </div>
+ </div>
 
 
 </div>
+<script src="{{asset('js/toastr.min.js')}}"></script>
+<script>
+    @if (Session::has('success'))
+    toastr.success("{{Session::get('success')}}")
+    {{-- expr --}}
+    @endif
+
+
+</script>
 </body>
 </html>
