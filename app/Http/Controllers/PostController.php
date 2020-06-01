@@ -25,6 +25,10 @@ public function create()
 {
 //
     $category=Category::all();
+    if ($category->count()==0) {
+        Session::flash('info','Please Create a Category Before Create a post');
+        return redirect()->back();
+    }
     return view('admin.post.createpost',compact('category'));
 }
 /**
@@ -48,7 +52,8 @@ public function store(Request $request)
         'title'=>$request->title,
         'content'=>$request->content,
         'featured'=>'uploads/posts/'.$featured_new_name,
-        'category_id'=>$request->category_id
+        'category_id'=>$request->category_id,
+        'slug'=>str_slug($request->title)
     ]);
     Session::flash('success','Post created successfully');
     return redirect()->back();

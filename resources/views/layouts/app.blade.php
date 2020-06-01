@@ -124,7 +124,10 @@
     toastr.success("{{Session::get('success')}}")
     {{-- expr --}}
     @endif
-
+     @if (Session::has('info'))
+    toastr.info("{{Session::get('info')}}")
+    {{-- expr --}}
+    @endif
 
 </script>
 </body>
