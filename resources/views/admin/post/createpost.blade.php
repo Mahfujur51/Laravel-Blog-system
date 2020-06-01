@@ -18,11 +18,22 @@
         Create New Post
     </div>
     <div class="card-body">
-        <form action="{{ route('post.store') }}" method="POST">
+        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control">
+            </div>
+            <div class="form-group">
+               <label for="">Select Category</label>
+               <select name="category_id" id="" class="form-control">
+                <option >Select a category</option>
+                @foreach ($category as $cat)
+                    {{-- expr --}}
+
+                   <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    @endforeach
+               </select>
             </div>
 
             <div class="form-group">
