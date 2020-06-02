@@ -112,6 +112,16 @@
                         <a href="{{ route('post') }}">Show Post</a>
                     </li>
                 </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('tag') }}">Show All Tag</a>
+                    </li>
+                </ul>
+                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('tag.create') }}">Create Tags</a>
+                    </li>
+                </ul>
                   <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('post.trushed') }}">Show Trushed Post</a>

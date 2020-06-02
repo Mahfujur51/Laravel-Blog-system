@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
 @if (count($errors)>0)
-   <ul class="list-group">
+<ul class="list-group">
     @foreach ($errors->all() as $error)
 
-        <li class="list-group-item text-danger">
-            {{$error}}
-        </li>
+    <li class="list-group-item text-danger">
+        {{$error}}
+    </li>
     @endforeach
 
 
-   </ul>
+</ul>
 
 @endif
 <div class="card">
@@ -29,29 +29,39 @@
                <select name="category_id" id="" class="form-control">
                 <option >Select a category</option>
                 @foreach ($category as $cat)
-                    {{-- expr --}}
+                {{-- expr --}}
 
-                   <option value="{{$cat->id}}">{{$cat->name}}</option>
-                    @endforeach
-               </select>
-            </div>
+                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label for="">Fitured Image</label>
-                <input type="file" name="featured" class="form-control">
-            </div>
+        <div class="form-group">
+            <label for="">Fitured Image</label>
+            <input type="file" name="featured" class="form-control">
+        </div>
+        <div class="form-group">
+            <label >Please Select Tag</label>
+            @foreach ($tag as $tags)
+                {{-- expr --}}
 
-            <div class="form-group">
-                <label for="">Content</label>
-                <textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-success" type="submit">Create Post</button>
-            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="{{$tags->id}}" name="tags[]">{{$tags->tag}}</label>
+          </div>
+           @endforeach
+      </div>
 
-        </form>
-
+      <div class="form-group">
+        <label for="">Content</label>
+        <textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea>
     </div>
+    <div class="text-center">
+        <button class="btn btn-success" type="submit">Create Post</button>
+    </div>
+
+</form>
+
+</div>
 </div>
 
 @endsection

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use App\Tag;
 use Session;
 class PostController extends Controller
 {
@@ -33,7 +34,8 @@ public function create()
         Session::flash('info','Please Create a Category Before Create a post');
         return redirect()->back();
     }
-    return view('admin.post.createpost',compact('category'));
+    $tag=Tag::all();
+    return view('admin.post.createpost',compact('category','tag'));
 }
 /**
 * Store a newly created resource in storage.
@@ -43,11 +45,14 @@ public function create()
 */
 public function store(Request $request)
 {
+
+//dd($request->all());
     $this->validate($request,[
         'title'=>'required|max:255',
         'featured'=>'required|image',
         'content'=>'required',
-        'category_id'=>'required'
+        'category_id'=>'required',
+        'tags'=>'required'
     ]);
     $featured=$request->featured;
     $featured_new_name=time().$featured->getClientOriginalName();
@@ -59,6 +64,8 @@ public function store(Request $request)
         'category_id'=>$request->category_id,
         'slug'=>str_slug($request->title)
     ]);
+   $post->tags()->attach($request->tags);
+
     Session::flash('success','Post created successfully');
     return redirect()->back();
 }

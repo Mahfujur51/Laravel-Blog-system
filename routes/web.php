@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
+    //=======================Route For Post==================
+
 Route::get('/post/create','PostController@create')->name('post.create');
 Route::get('/post/index','PostController@index')->name('post');
 Route::post('/post/store','PostController@store')->name('post.store');
@@ -32,7 +34,7 @@ Route::get('/post/edit/{id}','PostController@edit')->name('post.edit');
 Route::get('/post/delete/{id}','PostController@destroy')->name('post.delete');
 Route::get('/post/kill/{id}','PostController@kill')->name('post.kill');
 Route::get('/post/restore/{id}','PostController@restore')->name('post.restore');
-
+//==================Route for Category================
 
 Route::get('/category/create','CategoryController@create')->name('category.create');
 Route::post('/category/store','CategoryController@store')->name('category.store');
@@ -40,5 +42,15 @@ Route::get('/category/index','CategoryController@index')->name('category');
 Route::get('/category/edit/{id}','CategoryController@edit')->name('category.edit');
 Route::post('/category/update/{id}','CategoryController@update')->name('category.update');
 Route::get('/category/delete/{id}','CategoryController@destroy')->name('category.delete');
+
+//====================Route for tag=================
+
+Route::get('/tag/index','TagController@index')->name('tag');
+Route::get('/tag/edit/{id}','TagController@edit')->name('tag.edit');
+Route::get('/tag/delete/{id}','TagController@delete')->name('tag.delete');
+Route::get('/tag/create','TagController@create')->name('tag.create');
+Route::post('/tag/store','TagController@store')->name('tag.store');
+Route::post('/tag/update/{id}','TagController@update')->name('tag.update');
+
 });
 
