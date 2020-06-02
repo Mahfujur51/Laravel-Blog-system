@@ -26,6 +26,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 Route::get('/post/create','PostController@create')->name('post.create');
 Route::get('/post/index','PostController@index')->name('post');
 Route::post('/post/store','PostController@store')->name('post.store');
+Route::post('/post/update/{id}','PostController@update')->name('post.update');
 Route::get('/post/trushed','PostController@trushed')->name('post.trushed');
 Route::get('/post/edit/{id}','PostController@edit')->name('post.edit');
 Route::get('/post/delete/{id}','PostController@destroy')->name('post.delete');

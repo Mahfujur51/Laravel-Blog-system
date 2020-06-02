@@ -15,7 +15,7 @@
 @endif
 <div class="card">
     <div class="card-header">
-        Create New Category
+        Show All Category
     </div>
     <div class="card-body">
       <table class="table table-bordered">
@@ -26,6 +26,7 @@
             <th>Action</th>
         </thead>
         <tbody>
+           @if ($category->count()>0)
             @foreach ($category as $cat)
                 {{-- expr --}}
 
@@ -39,6 +40,11 @@
                 </td>
             </tr>
              @endforeach
+            @else
+            <tr>
+                <td class="text-center" colspan="4">No Category Created|| Please Create Category</td>
+            </tr>
+           @endif
         </tbody>
 
       </table>

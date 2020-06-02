@@ -1,23 +1,23 @@
 @extends('layouts.app')
 @section('content')
 @if (count($errors)>0)
-   <ul class="list-group">
+<ul class="list-group">
     @foreach ($errors->all() as $error)
 
-        <li class="list-group-item text-danger">
-            {{$error}}
-        </li>
+    <li class="list-group-item text-danger">
+        {{$error}}
+    </li>
     @endforeach
 
 
-   </ul>
+</ul>
 
 @endif
 <div class="card">
     <div class="card-header">
-      Show All Post
-    </div>
-    <div class="card-body">
+      Show All Trashed
+  </div>
+  <div class="card-body">
       <table class="table table-bordered">
         <thead>
             <th>Image</th>
@@ -27,6 +27,9 @@
             <th>Restore</th>
         </thead>
         <tbody>
+
+            @if ($post->count()>0)
+
             @foreach ($post as $posts)
 
 
@@ -36,18 +39,24 @@
                 <td>
                     <a href="{{ route('post.edit',$posts->id) }}" class="btn btn-sm btn-primary">Eidt</a>
                 </td>
-                  <td>
+                <td>
                     <a href="{{ route('post.kill',$posts->id) }}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
                 <td> <a href="{{route('post.restore',$posts->id)}}" class="btn btn-sm btn-success">Restore</a></td>
             </tr>
-             @endforeach
+            @endforeach
+            @else
+            <tr>
+                <td colspan="5" class="text-center">No tushed Post</td>
+            </tr>
+
+            @endif
 
         </tbody>
 
-      </table>
+    </table>
 
-    </div>
+</div>
 </div>
 
 @endsection
