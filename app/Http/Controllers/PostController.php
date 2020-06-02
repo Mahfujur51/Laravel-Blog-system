@@ -14,7 +14,14 @@ class PostController extends Controller
 */
 public function index()
 {
-//
+    $post=Post::all();
+    // if ($post->count()==0) {
+    //      Session::flash('info','Please  a post first');
+    //      return redirect()->back();
+
+    // }
+    return view('admin.post.index',compact('post'));
+
 }
 /**
 * Show the form for creating a new resource.
@@ -76,7 +83,9 @@ public function show($id)
 */
 public function edit($id)
 {
-//
+    $post=Post::find($id);
+    return view('admin.post.edit',compact('post'));
+
 }
 /**
 * Update the specified resource in storage.
@@ -97,6 +106,27 @@ public function update(Request $request, $id)
 */
 public function destroy($id)
 {
-//
+    $post=Post::find($id);
+    $post->delete();
+    Session::flash('success','Your Move to trushed');
+    return redirect()->back();
+
+}
+public function trushed(){
+    $post=Post::onlyTrashed()->get();
+     return view('admin.post.trushed',compact('post'));
+}
+public function kill($id){
+    $post=Post::withTrashed()->Where('id',$id)->first();
+    $post->forceDelete();
+    Session::flash('success','Your Post Deleted Parmanentely');
+    return redirect()->back();
+
+}
+public function restore($id){
+    $post=Post::withTrashed()->Where('id',$id)->first();
+    $post->restore();
+    Session::flash('success','Your Post Restored Successfully');
+    return redirect()->route('post');
 }
 }

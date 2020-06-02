@@ -23,19 +23,23 @@
             <th>Image</th>
             <th>Title</th>
             <th>Edit</th>
-            <th>Trashed</th>
+            <th>Deelete</th>
+            <th>Restore</th>
         </thead>
         <tbody>
             @foreach ($post as $posts)
-                {{-- expr --}}
+
 
             <tr>
                 <td><img src="{{$posts->featured}}" alt="{{$posts->title}}" width="120" height="80"></td>
                 <td>{{$posts->title}}</td>
                 <td>
-                    <a href="{{ route('post.edit',$posts->id) }}" class="btn btn-success">Eidt</a>
+                    <a href="{{ route('post.edit',$posts->id) }}" class="btn btn-sm btn-primary">Eidt</a>
                 </td>
-                <td> <a href="{{ route('post.delete',$posts->id) }}" class="btn btn-danger">Trushed</a></td>
+                  <td>
+                    <a href="{{ route('post.kill',$posts->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+                <td> <a href="{{route('post.restore',$posts->id)}}" class="btn btn-sm btn-success">Restore</a></td>
             </tr>
              @endforeach
 

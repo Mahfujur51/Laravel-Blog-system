@@ -107,6 +107,16 @@
                         <a href="{{ route('category.create') }}">Create Category</a>
                     </li>
                 </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('post') }}">Show Post</a>
+                    </li>
+                </ul>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('post.trushed') }}">Show Trushed Post</a>
+                    </li>
+                </ul>
             </div>
             @endif
 
