@@ -88,8 +88,9 @@ public function show($id)
 public function edit($id)
 {
     $post=Post::find($id);
+    $tag=Tag::all();
     $categories=Category::all();
-    return view('admin.post.edit',compact('post','categories'));
+    return view('admin.post.edit',compact('post','categories','tag'));
 }
 /**
 * Update the specified resource in storage.
@@ -103,7 +104,8 @@ public function update(Request $request, $id)
     $this->validate($request,[
         'title'=>'required',
         'content'=>'required',
-        'category_id'=>'required'
+        'category_id'=>'required',
+        'tags'
     ]);
     $post=Post::find($id);
     if ($request->hasFile('featured')) {
@@ -116,6 +118,7 @@ public function update(Request $request, $id)
     $post->content=$request->content;
     $post->category_id=$request->category_id;
     $post->update();
+    $post->tags()->sync($request->tags);
     Session::flash('success','Your Post Update Successfully');
     return redirect()->route('post');
 }

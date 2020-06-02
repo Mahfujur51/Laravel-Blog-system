@@ -1,17 +1,13 @@
 @extends('layouts.app')
 @section('content')
 @if (count($errors)>0)
-   <ul class="list-group">
+<ul class="list-group">
     @foreach ($errors->all() as $error)
-
-        <li class="list-group-item text-danger">
-            {{$error}}
-        </li>
+    <li class="list-group-item text-danger">
+        {{$error}}
+    </li>
     @endforeach
-
-
-   </ul>
-
+</ul>
 @endif
 <div class="card">
     <div class="card-header">
@@ -25,37 +21,50 @@
                 <input type="text" name="title" class="form-control" value="{{$post->title}}">
             </div>
             <div class="form-group">
-               <label for="">Select Category</label>
-               <select name="category_id" id="" class="form-control">
-
-                @foreach ($categories as $cat)
+                <label for="">Select Category</label>
+                <select name="category_id" id="" class="form-control">
+                    @foreach ($categories as $cat)
                     {{-- expr --}}
+                    <option value="{{$cat->id}}"
 
-                   <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    @if ($post->category->id==$cat->id)
+                    selected
+                    @endif
+                        >{{$cat->name}}</option>
                     @endforeach
-               </select>
+                </select>
             </div>
-            <div class="">
-                <label for="">Old Image</label>
-                <img src="{{$post->featured}}" alt="{{$post->title}}" height="200px" width="350px">
-            </div>
-
             <div class="form-group">
-                <label for="">Fitured Image</label>
-                <input type="file" name="featured" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="">Content</label>
-                <textarea name="content" class="form-control" id="" cols="30" rows="10">{{$post->content}}</textarea>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-success" type="submit">Create Post</button>
-            </div>
-
-        </form>
-
+                <label >Please Select Tag</label>
+                @foreach ($tag as $tags)
+                {{-- expr --}}
+                <div class="checkbox">
+                    <label><input type="checkbox" value="{{$tags->id}}" name="tags[]"
+                        @foreach ($post->tags as $t)
+                        @if ($tags->id==$t->id)
+                        checked
+                        @endif
+                        @endforeach
+                        >{{$tags->tag}}</label>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="">
+                    <label for="">Old Image</label>
+                    <img src="{{$post->featured}}" alt="{{$post->title}}" height="200px" width="350px">
+                </div>
+                <div class="form-group">
+                    <label for="">Fitured Image</label>
+                    <input type="file" name="featured" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Content</label>
+                    <textarea name="content" class="form-control" id="" cols="30" rows="10">{{$post->content}}</textarea>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success" type="submit">Create Post</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-@endsection
+    @endsection
