@@ -127,6 +127,16 @@
                         <a href="{{ route('post.trushed') }}">Show Trushed Post</a>
                     </li>
                 </ul>
+                 <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('user') }}">Show User</a>
+                    </li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('user.create') }}">Add User</a>
+                    </li>
+                </ul>
             </div>
             @endif
 

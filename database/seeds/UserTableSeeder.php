@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
        App\Profile::create([
 
         'user_id'=>$user->id,
-        'avatar'=>'uploads/avatr/1.jpg',
+        'avatar'=>'uploads/avatar/1.jpg',
         'about'=>'Demo Text Demo Text  Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text Demo Text',
         'facebook'=>'https://github.com/Mahfujur51',
         'youtube'=>'https://github.com/Mahfujur51'

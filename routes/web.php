@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/test'function()){
-//    return App\User::find(1)->profile;
-// }
+Route::get('/test',function(){
+   return App\Profile::find(1)->user;
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +55,15 @@ Route::get('/tag/delete/{id}','TagController@delete')->name('tag.delete');
 Route::get('/tag/create','TagController@create')->name('tag.create');
 Route::post('/tag/store','TagController@store')->name('tag.store');
 Route::post('/tag/update/{id}','TagController@update')->name('tag.update');
+
+//====================Route for User=====================//
+Route::get('/user/index','UserController@index')->name('user');
+Route::get('/user/create','UserController@create')->name('user.create');
+Route::post('/user/store','UserController@store')->name('user.store');
+Route::get('/user/admin/{id}','UserController@admin')->name('user.admin')->middleware('admin');
+Route::get('/user/radmin/{id}','UserController@radmin')->name('user.radmin')->middleware('admin');
+
+
 
 });
 
