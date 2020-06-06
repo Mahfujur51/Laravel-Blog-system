@@ -62,6 +62,10 @@ Route::get('/user/create','UserController@create')->name('user.create');
 Route::post('/user/store','UserController@store')->name('user.store');
 Route::get('/user/admin/{id}','UserController@admin')->name('user.admin')->middleware('admin');
 Route::get('/user/radmin/{id}','UserController@radmin')->name('user.radmin')->middleware('admin');
+//=================Route for Profile===============//
+
+Route::get('/profile/index','ProfileController@index')->name('profile.index');
+Route::post('/profile/update','ProfileController@update')->name('profile.update');
 
 
 

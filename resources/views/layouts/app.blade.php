@@ -138,6 +138,11 @@
                         <a href="{{ route('user.create') }}">Add User</a>
                     </li>
                 </ul>
+                   <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('profile.index') }}">Edit Profile</a>
+                    </li>
+                </ul>
                    {{-- expr --}}
                @endif
 
