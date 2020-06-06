@@ -29,6 +29,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 </head>
 <body>
@@ -117,18 +120,18 @@
                         <a href="{{ route('tag') }}">Show All Tag</a>
                     </li>
                 </ul>
-                 <ul class="list-group">
+                <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('tag.create') }}">Create Tags</a>
                     </li>
                 </ul>
-                  <ul class="list-group">
+                <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('post.trushed') }}">Show Trushed Post</a>
                     </li>
                 </ul>
-               @if (Auth::user()->admin)
-                 <ul class="list-group">
+                @if (Auth::user()->admin)
+                <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('user') }}">Show User</a>
                     </li>
@@ -138,22 +141,22 @@
                         <a href="{{ route('user.create') }}">Add User</a>
                     </li>
                 </ul>
-                   <ul class="list-group">
+                <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('profile.index') }}">Edit Profile</a>
                     </li>
                 </ul>
-                   {{-- expr --}}
-               @endif
+                {{-- expr --}}
+                @endif
 
             </div>
             @endif
 
             <div class="col-md-8">
-             @yield('content')
-         </div>
-     </div>
- </div>
+               @yield('content')
+           </div>
+       </div>
+   </div>
 
 
 </div>
@@ -163,11 +166,17 @@
     toastr.success("{{Session::get('success')}}")
     {{-- expr --}}
     @endif
-     @if (Session::has('info'))
+    @if (Session::has('info'))
     toastr.info("{{Session::get('info')}}")
     {{-- expr --}}
     @endif
 
 </script>
+<script>
+    $(document).ready(function() {
+  $('#summernote').summernote();
+});
+</script>
+
 </body>
 </html>

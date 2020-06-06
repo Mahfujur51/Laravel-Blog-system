@@ -18,7 +18,7 @@
         Edit Profile
     </div>
     <div class="card-body">
-        <form action="{{ route('profile.update') }}" method="POST" enctype='multipart/form-data'>
+        <form action="{{-- {{ route('profile.update') }} --}}" method="POST" enctype='multipart/form-data'>
             @csrf
             <div class="form-group">
                 <label for="title">User Name</label>
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label for="title">About You:</label>
-                <textarea name="about" id="" cols="30" rows="10" class="form-control">{{$user->profile->about}}</textarea>
+                <textarea name="about" id="summernote" cols="30" rows="10" class="form-control">{{$user->profile->about}}</textarea>
             </div>
 
 

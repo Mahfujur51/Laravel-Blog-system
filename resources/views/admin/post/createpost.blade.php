@@ -53,7 +53,7 @@
 
       <div class="form-group">
         <label for="">Content</label>
-        <textarea name="content" class="form-control" id="" cols="30" rows="10"></textarea>
+        <textarea name="content" class="form-control" id="summernote" cols="30" rows="10"></textarea>
     </div>
     <div class="text-center">
         <button class="btn btn-success" type="submit">Create Post</button>
