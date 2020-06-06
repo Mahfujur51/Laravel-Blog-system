@@ -127,6 +127,7 @@
                         <a href="{{ route('post.trushed') }}">Show Trushed Post</a>
                     </li>
                 </ul>
+               @if (Auth::user()->admin)
                  <ul class="list-group">
                     <li class="list-group-item">
                         <a href="{{ route('user') }}">Show User</a>
@@ -137,6 +138,9 @@
                         <a href="{{ route('user.create') }}">Add User</a>
                     </li>
                 </ul>
+                   {{-- expr --}}
+               @endif
+
             </div>
             @endif
 
