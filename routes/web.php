@@ -66,7 +66,10 @@ Route::get('/user/delete/{id}','UserController@destroy')->name('user.delete');
 //=================Route for Profile===============//
 
 Route::get('/profile/index','ProfileController@index')->name('profile.index');
+
 Route::post('/profile/update','ProfileController@update')->name('profile.update');
+Route::get('/settings','ProfileController@setting')->name('settings.index')->middleware('admin');
+Route::post('/settings/update','ProfileController@siteupdate')->name('settings.update')->middleware('admin');
 
 
 

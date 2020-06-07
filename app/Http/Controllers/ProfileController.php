@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\Setting;
 
 class ProfileController extends Controller
 {
@@ -47,6 +48,27 @@ class ProfileController extends Controller
         return redirect()->back();
 
 
+
+    }
+    public function setting(){
+        $setting=Setting::first();
+        return view('admin.setting.setting',compact('setting'));
+    }
+    public function siteupdate(Request $request){
+        $this->validate($request,[
+            'site_name'=>'required',
+            'contact_number'=>'required',
+            'contact_address'=>'required',
+            'contact_email'=>'required'
+        ]);
+        $setting=Setting::first();
+        $setting->site_name=$request->site_name;
+        $setting->contact_number=$request->contact_number;
+        $setting->contact_address=$request->contact_address;
+        $setting->contact_email=$request->contact_email;
+        $setting->update();
+        Session::flash('success','Settings update Successfully');
+        return redirect()->back();
 
     }
 }
