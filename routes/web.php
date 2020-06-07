@@ -18,6 +18,7 @@ Route::get('/test',function(){
 });
 
 Route::get('/','FontendController@index')->name('index');
+Route::get('/post/{slug}','FontendController@singlePost')->name('single.post');
 
 Auth::routes();
 
