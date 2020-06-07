@@ -4,7 +4,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Seosight - Index Page</title>
+    <title>{{$title}}</title>
 
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/fonts.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app/css/crumina-fonts.css')}}">
@@ -43,53 +43,7 @@
 
 <div class="content-wrapper">
 
-    <header class="header" id="site-header">
-        <div class="container">
-                <div class="header-content-wrapper">
-                    <div class="logo">
-                        <div class="logo-text">
-                            <div class="logo-title">LARAVEL'S BLOG</div>
-                        </div>
-                    </div>
-
-                    <nav id="primary-menu" class="primary-menu">
-                        <a href='javascript:void(0)' id="menu-icon-trigger" class="menu-icon-trigger showhide">
-                            <span id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
-                                <svg width="1000px" height="1000px">
-                                    <path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
-                                    <path id="pathE" d="M 300 500 L 700 500"></path>
-                                    <path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
-                                </svg>
-                            </span>
-                        </a>
-                        <ul class="primary-menu-menu" style="overflow: hidden;">
-                            <li class="">
-                                <a href="">NEWS</a>
-                            </li>
-                            <li class="">
-                                <a href="">VIDEOS</a>
-                            </li>
-                            <li class="">
-                                <a href="">DISCUSSIONS</a>
-                            </li>
-                            <li class="">
-                                <a href="">TUTORIALS</a>
-                            </li>
-                            <li class="">
-                                <a href="">NEWSLETTER</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <ul class="nav-add">
-                        <li class="search search_main" style="color: black; margin-top: 5px;">
-                            <a href="#" class="js-open-search">
-                                <i class="seoicon-loupe"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-        </div>
-    </header>
+    @include('indclude.header')
 
     <div class="header-spacer"></div>
 
@@ -100,9 +54,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/1.png" alt="seo">
+                            <img src="{{$first_post->featured}}" alt="{{$first_post->title}}">
                             <div class="overlay"></div>
-                            <a href="app/img/post1.jpg" class="link-image js-zoom-image">
+                            <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -114,8 +68,8 @@
 
                             <div class="post__content-info">
 
-                                    <h2 class="post__title entry-title ">
-                                        <a href="15_blog_details.html">The Important & Standard Post Format</a>
+                                    <h2 class="post__title entry-title text-center ">
+                                        <a href="15_blog_details.html">{{$first_post->title}}</a>
                                     </h2>
 
                                     <div class="post-additional-info">
@@ -125,14 +79,14 @@
                                             <i class="seoicon-clock"></i>
 
                                             <time class="published" datetime="2016-04-17 12:00:00">
-                                                April 17, 2016
+                                                {{$first_post->created_at->diffForHumans()}}
                                             </time>
 
                                         </span>
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">Video</a>
+                                            <a href="#">{{$first_post->category->name}}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -154,9 +108,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/2.png" alt="seo">
+                            <img src="{{$second_post->featured}}" alt="seo">
                             <div class="overlay"></div>
-                            <a href="app/img/2.png" class="link-image js-zoom-image">
+                            <a href="{{$second_post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -168,8 +122,8 @@
 
                             <div class="post__content-info">
 
-                                    <h2 class="post__title entry-title ">
-                                        <a href="15_blog_details.html">The Important & Standard Post Format</a>
+                                    <h2 class="post__title entry-title text-center">
+                                        <a href="">{{$second_post->title}}</a>
                                     </h2>
 
                                     <div class="post-additional-info">
@@ -179,14 +133,14 @@
                                             <i class="seoicon-clock"></i>
 
                                             <time class="published" datetime="2016-04-17 12:00:00">
-                                                April 17, 2016
+                                               {{$second_post->created_at->diffForHumans()}}
                                             </time>
 
                                         </span>
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">Video</a>
+                                            <a href="#">{{$second_post->category->name}}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -204,9 +158,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/3.jpg" alt="seo">
+                            <img src="{{$thrid_post->featured}}" alt="seo">
                             <div class="overlay"></div>
-                            <a href="app/img/3.jpg" class="link-image js-zoom-image">
+                            <a href="{{$thrid_post->featured}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -218,8 +172,8 @@
 
                             <div class="post__content-info">
 
-                                    <h2 class="post__title entry-title ">
-                                        <a href="15_blog_details.html">The Important & Standard Post Format</a>
+                                    <h2 class="post__title entry-title text-center">
+                                        <a href="15_blog_details.html">{{$thrid_post->title}}</a>
                                     </h2>
 
                                     <div class="post-additional-info">
@@ -229,14 +183,14 @@
                                             <i class="seoicon-clock"></i>
 
                                             <time class="published" datetime="2016-04-17 12:00:00">
-                                                April 17, 2016
+                                              {{$thrid_post->created_at->toFormattedDateString()}}
                                             </time>
 
                                         </span>
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">Video</a>
+                                            <a href="#">{{$thrid_post->category->name}}</a>
                                         </span>
 
                                         <span class="post__comments">
