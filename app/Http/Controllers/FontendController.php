@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Setting;
 use App\Category;
 use App\Post;
+use App\Tag;
 
 class FontendController extends Controller
 {
@@ -25,12 +26,13 @@ class FontendController extends Controller
         $title=Setting::first()->site_name;
          $categors=Category::take(5)->get();
           $setting=Setting::first();
+          $ttag=Tag::all();
           $next_post=Post::where('id','>',$post->id)->min('id');
           $previous_post=Post::where('id','<',$post->id)->max('id');
           $next=Post::find($next_post);
           $perv=Post::find($previous_post);
 
-        return view('single',compact('post','title','categors','setting','next','perv'));
+        return view('single',compact('post','title','categors','setting','next','perv','ttag'));
 
     }
 }
