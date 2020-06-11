@@ -35,4 +35,12 @@ class FontendController extends Controller
         return view('single',compact('post','title','categors','setting','next','perv','ttag'));
 
     }
+    public function category($id){
+
+      $category=Category::find($id);
+      $setting=Setting::first();
+    $title=Setting::first()->site_name;
+       $categors=Category::take(5)->get();
+       return view('category',compact('category','setting','title','categors'));
+    }
 }
