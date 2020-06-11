@@ -22,7 +22,7 @@
                                 {{-- expr --}}
 
                             <li class="">
-                                <a href="">{{$category->name}}</a>
+                                <a href="{{ route('category.single',$category->id) }}">{{$category->name}}</a>
                             </li>
                             @endforeach
 
