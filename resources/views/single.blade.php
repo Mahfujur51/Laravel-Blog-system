@@ -37,7 +37,7 @@
                             <div class="tags-wrap">
                                 @foreach ($post->tags as $tag)
                                 {{-- expr --}}
-                                <a href="#" class="w-tags-item">{{$tag->tag}}</a>
+                                <a href="{{ route('tag.single',$tag->id) }}" class="w-tags-item">{{$tag->tag}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="tags-wrap text-center">
                         @foreach ($ttag as $ttags)
-                          <a href="#" class="w-tags-item">{{$ttags->tag}}</a>
+                          <a href="{{ route('tag.single',$ttags->id) }}" class="w-tags-item">{{$ttags->tag}}</a>
                         @endforeach
 
 

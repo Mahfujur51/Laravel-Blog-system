@@ -20,6 +20,7 @@ Route::get('/test',function(){
 Route::get('/','FontendController@index')->name('index');
 Route::get('/post/{slug}','FontendController@singlePost')->name('single.post');
 Route::get('/category/{id}','FontendController@category')->name('category.single');
+Route::get('/tag/{id}','FontendController@tag')->name('tag.single');
 
 Auth::routes();
 

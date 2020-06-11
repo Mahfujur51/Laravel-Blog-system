@@ -24,13 +24,13 @@ class FontendController extends Controller
     public function singlePost($slug){
         $post=Post::where('slug',$slug)->first();
         $title=Setting::first()->site_name;
-         $categors=Category::take(5)->get();
-          $setting=Setting::first();
-          $ttag=Tag::all();
-          $next_post=Post::where('id','>',$post->id)->min('id');
-          $previous_post=Post::where('id','<',$post->id)->max('id');
-          $next=Post::find($next_post);
-          $perv=Post::find($previous_post);
+        $categors=Category::take(5)->get();
+        $setting=Setting::first();
+        $ttag=Tag::all();
+        $next_post=Post::where('id','>',$post->id)->min('id');
+        $previous_post=Post::where('id','<',$post->id)->max('id');
+        $next=Post::find($next_post);
+        $perv=Post::find($previous_post);
 
         return view('single',compact('post','title','categors','setting','next','perv','ttag'));
 
@@ -39,8 +39,18 @@ class FontendController extends Controller
 
       $category=Category::find($id);
       $setting=Setting::first();
+       $tag=Tag::all();
+      $title=Setting::first()->site_name;
+      $categors=Category::take(5)->get();
+      return view('category',compact('category','setting','title','categors','tag'));
+  }
+  public function tag($id){
+    $tag=Tag::find($id);
+    $setting=Setting::first();
     $title=Setting::first()->site_name;
-       $categors=Category::take(5)->get();
-       return view('category',compact('category','setting','title','categors'));
-    }
+    $categors=Category::take(5)->get();
+     $tags=Tag::all();
+    return view('tag',compact('tag','setting','title','categors','tags'));
+
+}
 }
