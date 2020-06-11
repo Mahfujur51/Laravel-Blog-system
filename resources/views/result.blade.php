@@ -2,7 +2,7 @@
 @section('content')
 <div class="stunning-header stunning-header-bg-lightviolet">
     <div class="stunning-header-content">
-        <h1 class="stunning-header-title">Category:{{$category->name}}</h1>
+        <h1 class="stunning-header-title">Search result:{{$query}}</h1>
     </div>
 </div>
 <div class="container">
@@ -11,7 +11,8 @@
 
             <div class="row">
                         <div class="case-item-wrap">
-                            @foreach ($category->posts as $post)
+                        @if ($pposts->count()>0)
+                            @foreach ($pposts as $post)
                                 {{-- expr --}}
 
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -22,7 +23,12 @@
                                     <h6 class="case-item__title"><a href="{{ route('single.post',$post->slug) }}">{{$post->title}}</a></h6>
                                 </div>
                             </div>
-                            @endforeach
+                             @endforeach
+                            {{-- expr --}}
+                        @else
+                        <h2 class="text-center">No result found!! </h2>
+                        @endif
+
 
 
                             </div>
@@ -47,10 +53,10 @@
                         </div>
 
                         <div class="tags-wrap">
-                            @foreach ($tag as $tags)
+                            @foreach ($tags as $ttags)
                                 {{-- expr --}}
 
-                            <a href="{{ route('tag.single',$tags->id) }}" class="w-tags-item">{{$tags->tag}}</a>
+                            <a href="{{ route('tag.single',$ttags->id) }}" class="w-tags-item">{{$ttags->tag}}</a>
                              @endforeach
 
                         </div>

@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Setting;
 use App\Category;
 use App\Post;
 use App\Tag;
-
 class FontendController extends Controller
 {
     public function index(){
@@ -31,26 +28,33 @@ class FontendController extends Controller
         $previous_post=Post::where('id','<',$post->id)->max('id');
         $next=Post::find($next_post);
         $perv=Post::find($previous_post);
-
         return view('single',compact('post','title','categors','setting','next','perv','ttag'));
-
     }
     public function category($id){
+        $category=Category::find($id);
+        $setting=Setting::first();
+        $tag=Tag::all();
+        $title=Setting::first()->site_name;
+        $categors=Category::take(5)->get();
+        return view('category',compact('category','setting','title','categors','tag'));
+    }
+    public function tag($id){
+        $tag=Tag::find($id);
+        $setting=Setting::first();
+        $title=Setting::first()->site_name;
+        $categors=Category::take(5)->get();
+        $tags=Tag::all();
+        return view('tag',compact('tag','setting','title','categors','tags'));
+    }
+    public function result(){
+        $pposts=Post::Where('title','like','%'.request('query').'%')->get();
+        $setting=Setting::first();
+        $title=Setting::first()->site_name;
+        $categors=Category::take(5)->get();
+        $query=request('query');
+        $tags=Tag::all();
 
-      $category=Category::find($id);
-      $setting=Setting::first();
-       $tag=Tag::all();
-      $title=Setting::first()->site_name;
-      $categors=Category::take(5)->get();
-      return view('category',compact('category','setting','title','categors','tag'));
-  }
-  public function tag($id){
-    $tag=Tag::find($id);
-    $setting=Setting::first();
-    $title=Setting::first()->site_name;
-    $categors=Category::take(5)->get();
-     $tags=Tag::all();
-    return view('tag',compact('tag','setting','title','categors','tags'));
+        return view('result',compact('setting','title','categors','tags','pposts','query'));
 
-}
+    }
 }
